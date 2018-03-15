@@ -5,9 +5,8 @@
  * Date: 01/03/18
  * Time: 16:36
  */
-require_once "Conexao.php";
-require_once "Categoria.php";
-
+    require "Conexao.php";
+    require "Categoria.php";
 class CategoriaCrud
 {
     private $conexao;
@@ -17,15 +16,19 @@ class CategoriaCrud
         $sql = "select * from categoria order by nome_categoria";
         $resultado = $this->conexao->query($sql);
 
-        $categorias = $resultado->fetchAll (PDO::FETCH_CLASS, 'categoria',['id_categoria', 'nome_categoria', 'desc_categoria']);
+        $categorias = $resultado->fetchAll (PDO::FETCH_ASSOC);
 
+        $listaCategorias = [];
+        foreach ($categorias as $categoria){
+            $listaCategorias[] = new Categoria($categoria['id_categoria'], $categoria['nome_categoria'], $categoria['descricao_categoria']);
+        }
 
-        return $categorias;
+        return $listaCategorias;
     }
 
     function getCategoria($id){
         $this->conexao = Conexao::getConexao();
-        $sql = "select * from categoria WHERE id_categoria = ". $id;
+        $sql = "select * from categoria WHERE id_categoria";
         $resultado = $this->conexao->query($sql);
 
         $categoria = $resultado->fetch (PDO::FETCH_ASSOC);
@@ -33,18 +36,10 @@ class CategoriaCrud
         return $categoria;
     }
 
-    function insertCategoria(Categoria $categoria){
-        $this->conexao = Conexao::getConexao();
-        $sql = "insert into 'categoria' ('nome_categoria', 'desc_categoria') VALUES ('".$categoria->getNome()."', '".$categoria->getDescricao()."')";
-
-        echo $sql;
-
-    }
-
 }
 
-//
-//$crud = new CategoriaCrud();
-//$categoria = $crud->getCategorias();
-//
-//var_dump($categoria);
+
+$crud = new CategoriaCrud();
+$categoria = $crud->getCategoria('1');
+
+var_dump($categoria);
