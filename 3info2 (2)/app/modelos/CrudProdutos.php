@@ -27,7 +27,7 @@ class CrudProdutos
         $this->conexao->exec($sql);
     }
 
-    public function getProduto(int getId)
+    public function getProduto($id )
     {
         $consulta = $this->conexao->query("SELECT * FROM produtos WHERE id = getId()");
         $produto = $consulta->fetch(PDO::FETCH_ASSOC);
@@ -38,15 +38,15 @@ class CrudProdutos
 
     public function getProdutos()
     {
-        $consulta = $this->conexao->query("SELECT * FROM tb_produtos");
-        $arrayProdutos = $consulta->fetchAll(PDO::FETCH_ASSOC);
-
+        $sql = "select * from produto order by nome_produto";
+        $resultado = $this->conexao->query($sql);
         $listaProdutos = [];
-        foreach ($arrayProdutos as $produto) {
 
-            $listaProdutos [] = new Produto($produto['nome'], $produto['preco'], $produto['categoria'], $produto['estoque'], $produto['codigo'], $produto['imagem']);
+        $produtos = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($produtos as $produto){
+            $objeto = new Categoria(produto['id_produto'], $produto['nome_produto'], $produto['descricao_produto']);
+            $listaProdutos[] = $objeto;
         }
-
         return $listaProdutos;
     }
 

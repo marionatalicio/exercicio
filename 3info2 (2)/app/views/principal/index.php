@@ -39,28 +39,20 @@
     <div id="abas">
 
         <ul>
-            <li id="aba1"> Tab 1 </li>
-
+            <?php foreach ($categorias as $categoria):?>
+            <li id="aba1"> <?= $categoria->getNome()?> </li>
+            <?php endforeach;?>
         </ul>
 
-
-        <ul>
-            <li id="aba2"> Tab 2 </li>
-                </ul>
-
-
-        <ul>
-
-
-            <li id="aba3"> Tab 3 </li>
-
-            </ul>
 
     </div>
 
 
+
+
     <div id="conteudo1" class="conteudo aba1">
         conteudo da div 1
+        <!-- conteudo da categoria-->
     </div>
 
 
@@ -74,8 +66,9 @@
 
     </div>
 
-
 </section>
+
+
 
 </body>
 
