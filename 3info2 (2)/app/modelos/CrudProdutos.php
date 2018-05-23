@@ -6,7 +6,7 @@
  * Time: 10:56
  */
 
-require_once "BDConection.php";
+require_once "BDConnection.php";
 require_once "Produto.php";
 
 class CrudProdutos
@@ -17,7 +17,7 @@ class CrudProdutos
 
     public function __construct()
     {
-        $this->conexao = Conexao::getConexao();
+        $this->conexao = BDConnection::getConexao();
     }
 
     public function salvar(Produto $produto)
@@ -44,7 +44,7 @@ class CrudProdutos
 
         $produtos = $resultado->fetchAll(PDO::FETCH_ASSOC);
         foreach ($produtos as $produto){
-            $objeto = new Categoria(produto['id_produto'], $produto['nome_produto'], $produto['descricao_produto']);
+            $objeto = new Produto($produto['id_produto'], $produto['nome_produto'], $produto['descricao_produto'], $produto['foto_produto'], $produto['preco_produto'], $produto['id_categoria']);
             $listaProdutos[] = $objeto;
         }
         return $listaProdutos;
@@ -81,4 +81,3 @@ class CrudProdutos
 //    }
 
 }
-

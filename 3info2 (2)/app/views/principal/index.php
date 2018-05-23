@@ -12,14 +12,14 @@
         $(document).ready(function () {
 
             $("#abas ul li").click(function(){
-                $("#abas ul li").removeClass("selecionado");
+
                 $(this).toggleClass("selecionado");
 
 
                 // conteudo aparecendo ou n
-                $(".conteudo").hide();
+
                 var id = $(this).attr("id");
-                $("."+id).show();
+                $("."+id).toggle();
 
 
             });
@@ -40,7 +40,7 @@
 
         <ul>
             <?php foreach ($categorias as $categoria):?>
-            <li id="aba1"> <?= $categoria->getNome()?> </li>
+            <li id="aba<?= $categoria->getId()?>" class="selecionado"> <?= $categoria->getNome()?> </li>
             <?php endforeach;?>
         </ul>
 
@@ -49,22 +49,15 @@
 
 
 
-
-    <div id="conteudo1" class="conteudo aba1">
-        conteudo da div 1
+    <?php foreach ($produtos as $produto):?>
+    <div  class="conteudo aba<?= $produto->getIdCategoria()?>">
+        <?= $produto->getNome()?>
         <!-- conteudo da categoria-->
     </div>
 
+    <?php endforeach;?>
 
-    <div id="conteudo2" class="conteudo aba2"  >
-        conteudo da div 2
 
-    </div>
-
-    <div id="conteudo3" class="conteudo aba3">
-        conteudo da div 3
-
-    </div>
 
 </section>
 

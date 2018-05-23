@@ -10,8 +10,8 @@ class Conexao {
 
     const HOST      = "localhost";
     const NOMEBANCO = "3info2";
-    const USUARIO   = "3info2";
-    const SENHA     = "3info2";
+    const USUARIO   = "root";
+    const SENHA     = "root";
 
     public static function getConexao(){
         $conexao = new PDO("mysql:host=".self::HOST.";dbname=".self::NOMEBANCO, self::USUARIO, self::SENHA);

@@ -1,13 +1,13 @@
 <?php
 
-require_once 'BDConection.php';
+require_once 'BDConnection.php';
 require_once 'Categoria.php';
 
 class CategoriaCrud
 {
     public function __construct()
     {
-        $this->conexao = BDConection::getConexao();
+        $this->conexao = BDConnection::getConexao();
     }
 
     public function getCategorias(){
