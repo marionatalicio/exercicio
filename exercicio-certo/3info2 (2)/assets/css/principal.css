@@ -1,0 +1,30 @@
+#abas{
+  //  border: 1px solid green;
+    overflow: hidden;
+
+}
+
+
+#abas ul {
+    display: inline;
+    list-style: none;
+
+}
+
+#abas ul li {
+    float: left;
+    display: inline-block;
+    border: solid 1px black;
+    padding: 5px 15px ;
+    border-radius: 10px 10px 0 0 ;
+
+}
+
+.conteudo{
+    border: 1px solid red;
+}
+
+.selecionado {
+
+    background-color : wheat;
+}
