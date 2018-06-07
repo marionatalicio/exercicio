@@ -13,6 +13,7 @@
     <script>
 
         $(document).ready(function () {
+            $(".filho").hide();
 
             $("#abas ul li").click(function(){
 
@@ -22,23 +23,21 @@
                 // conteudo aparecendo ou n
 
                 var id = $(this).attr("id");
-                $("."+id).toggle();
+                $("."+id).toggle("slow");
 
 
             });
 
-        });
-        $(document).ready(function () {
 
-            $("#aba").click(function(){
 
-                $(this).toggleClass("selecionado");
+            $(".titulo").click(function(){
+                var pai = $(this).parent();
+
+                pai.find(".filho").toggle("slow");
 
 
                 // conteudo aparecendo ou n
 
-                var id = $(this).attr("id");
-                $("."+id).toggle();
 
 
             });
@@ -72,27 +71,23 @@
 
         <ul>
             <?php foreach ($categorias as $categoria):?>
-            <li id="aba<?= $categoria->getId()?>" class="selecionado"> <?= $categoria->getNome()?> </li>
+            <li id="aba<?= $categoria->getId()?>" class="selecionado"> <?= utf8_encode($categoria->getNome())?> </li>
             <?php endforeach;?>
         </ul>
 
 
     </div>
-
-
-
     <?php foreach ($produtos as $produto):?>
     <div id="aba" class="conteudo aba<?= $produto->getIdCategoria()?>">
-        <?= $produto->getNome()?>
-        <div id="tab">
-        <?= $produto->getDescricao()?>
-        </div>
+       <span class="titulo"> <?= utf8_encode($produto->getNome())?></span>
+
         <!-- conteudo da categoria-->
+        <div id="tab" class="filho aba<?= utf8_encode($produto->getIdCategoria())?>">
+            <?= utf8_encode($produto->getDescricao())?>
+        </div>
     </div>
+
     <?php endforeach;?>
-
-
-
 </section>
 <footer class="page-footer light-blue lighten-1">
     <div class="container">
