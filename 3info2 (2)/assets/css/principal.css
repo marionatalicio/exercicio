@@ -21,10 +21,10 @@
 }
 
 .conteudo{
-    border: 1px solid red;
+//    border: 1px solid red;
 }
 
 .selecionado {
 
-    background-color : blue;
+    background-color : wheat;
 }
